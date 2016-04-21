@@ -1,0 +1,16 @@
+name: ChatMessenger
+author: Zeryther
+version: 1.0.2
+website: http://www.zeryther.com
+main: com.zeryther.chatmessenger.ChatMessengerPlugin
+
+commands:
+  msg:
+    description: Private Message a player
+    aliases: [w, whisper, tell, t, message, pm, pn]
+  reply:
+    description: Reply to a private message
+    aliases: [r, rep, rply]
+  blockmsg:
+    description: Disable private messaging
+    aliases: [blocktell, blockwhisper, blockpm, bmsg]

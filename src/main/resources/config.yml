@@ -1,0 +1,13 @@
+cmd.msg.format.meTo: "&6[&9I&6->&c%displayname%&6] &f%message%"
+cmd.msg.format.toMe: "&6[&9%displayname%&6->&cme&6] &f%message%"
+cmd.msg.usage: "&c/%label% <User> <Message>"
+
+cmd.reply.usage: "&c/%label% <Message>"
+cmd.reply.noMessageSent: "&cYou have to send a message before you can use /reply"
+
+cmd.blockmsg.activated: "&cYou can no longer receive private messages!"
+cmd.blockmsg.deactivated: "&aYou can now receive private messages again!"
+
+player.notOnline: "&cPlayer '%player%' is offline!"
+player.noPermission: "&cYou do not have permission!"
+player.blockingMessages: "&c%displayname% is blocking private messages!"
