@@ -109,7 +109,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 							
 							if(Bukkit.getPlayer(p2) != null){
 								StringBuilder sb = new StringBuilder();
-								for (int i = 1; i < args.length; i++) {
+								for (int i = 0; i < args.length; i++) {
 									sb.append(" ").append(args[i]);
 								}
 								String message = sb.toString().substring(1);
