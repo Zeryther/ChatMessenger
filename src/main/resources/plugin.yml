@@ -7,7 +7,7 @@ main: com.zeryther.chatmessenger.ChatMessengerPlugin
 commands:
   msg:
     description: Private Message a player
-    aliases: [w, whisper, tell, t, message, pm, pn]
+    aliases: [w, whisper, tell, t, message, pm, pn, m]
   reply:
     description: Reply to a private message
     aliases: [r, rep, rply]
