@@ -8,6 +8,10 @@ cmd.reply.noMessageSent: "&cYou have to send a message before you can use /reply
 cmd.blockmsg.activated: "&cYou can no longer receive private messages!"
 cmd.blockmsg.deactivated: "&aYou can now receive private messages again!"
 
+cmd.socialspy.on: "&aSocial-Spy is now active!"
+cmd.socialspy.off: "&cSocial-Spy is no longer active!"
+cmd.socialspy.msg: "&6[&c%player1%&6->%c%player2%&6] &f%message%"
+
 player.notOnline: "&cPlayer '%player%' is offline!"
 player.noPermission: "&cYou do not have permission!"
 player.blockingMessages: "&c%displayname% is blocking private messages!"

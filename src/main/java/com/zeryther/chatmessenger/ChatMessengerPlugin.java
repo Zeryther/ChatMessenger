@@ -3,6 +3,7 @@ package com.zeryther.chatmessenger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,7 @@ public class ChatMessengerPlugin extends JavaPlugin {
 	private static ChatMessengerPlugin instance;
 	public static ArrayList<Player> BLOCK_MSG = new ArrayList<Player>();
 	public static HashMap<Player, Player> REPLY = new HashMap<Player, Player>();
+	public static ArrayList<CommandSender> SOCIAL_SPY = new ArrayList<CommandSender>();
 	
 	public void onEnable() {
 		instance = this;

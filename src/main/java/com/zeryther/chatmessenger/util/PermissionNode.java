@@ -7,6 +7,7 @@ public class PermissionNode {
 	public static final String CMD_REPLY;
 	public static final String CMD_BLOCKMSG;
 	public static final String CMD_BLOCKMSG_EXEMPT;
+	public static final String CMD_SOCIALSPY;
 	
 	static {
 		CMD_MSG = "chatmessenger.cmd.msg";
@@ -14,6 +15,7 @@ public class PermissionNode {
 		CMD_REPLY = "chatmessenger.cmd.reply";
 		CMD_BLOCKMSG = "chatmessenger.cmd.blockmsg";
 		CMD_BLOCKMSG_EXEMPT = "chatmessenger.cmd.blockmsg.exempt";
+		CMD_SOCIALSPY = "chatmessenger.cmd.socialspy";
 	}
 
 }

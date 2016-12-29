@@ -18,6 +18,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 		ChatMessengerPlugin.getInstance().getCommand("msg").setExecutor(this);
 		ChatMessengerPlugin.getInstance().getCommand("reply").setExecutor(this);
 		ChatMessengerPlugin.getInstance().getCommand("blockmsg").setExecutor(this);
+		ChatMessengerPlugin.getInstance().getCommand("socialspy").setExecutor(this);
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -41,6 +42,10 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								
 								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message)));
 								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message)));
+
+								for(CommandSender spy : ChatMessengerPlugin.SOCIAL_SPY){
+									spy.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message)));
+								}
 								
 								if(ChatMessengerPlugin.REPLY.containsKey(p)) ChatMessengerPlugin.REPLY.remove(p);
 								ChatMessengerPlugin.REPLY.put(p, p2);
@@ -94,6 +99,24 @@ public class ChatMessengerExecutor implements CommandExecutor {
 				}
 			} else {
 				sender.sendMessage(ChatColor.RED + "Invalid type.");
+			}
+		}
+
+		if(cmd.getName().equalsIgnoreCase("socialspy")){
+			if(sender.hasPermission(PermissionNode.CMD_SOCIALSPY)){
+				if(ChatMessengerPlugin.SOCIAL_SPY.contains(sender)){
+					// Social Spy is on
+
+					ChatMessengerPlugin.SOCIAL_SPY.remove(sender);
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.off")));
+				} else {
+					// Social Spy is off
+
+					ChatMessengerPlugin.SOCIAL_SPY.add(sender);
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.on")));
+				}
+			} else {
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.noPermission")));
 			}
 		}
 		
