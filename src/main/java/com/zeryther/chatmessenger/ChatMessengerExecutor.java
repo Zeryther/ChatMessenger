@@ -163,7 +163,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 						ChatMessengerPlugin.BLOCK_MSG.remove(p);
 					} else {
 						p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.blockmsg.activated")));
-			            ChatMessengerPlugin.BLOCK_MSG.remove(p);
+			            ChatMessengerPlugin.BLOCK_MSG.add(p);
 					}
 				} else {
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.noPermission")));
