@@ -17,3 +17,6 @@ commands:
   socialspy:
     description: Spy on private messages
     aliases: [spy]
+  chatreload:
+    description: Reload ChatMessenger
+    aliases: [cmreload]

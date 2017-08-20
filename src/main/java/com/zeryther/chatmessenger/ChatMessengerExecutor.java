@@ -19,9 +19,19 @@ public class ChatMessengerExecutor implements CommandExecutor {
 		ChatMessengerPlugin.getInstance().getCommand("reply").setExecutor(this);
 		ChatMessengerPlugin.getInstance().getCommand("blockmsg").setExecutor(this);
 		ChatMessengerPlugin.getInstance().getCommand("socialspy").setExecutor(this);
+		ChatMessengerPlugin.getInstance().getCommand("chatreload").setExecutor(this);
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		if(cmd.getName().equalsIgnoreCase("chatreload")){
+			if(sender.hasPermission(PermissionNode.CMD_CHATRELOAD)){
+				ChatMessengerPlugin.getInstance().reloadConfig();
+				sender.sendMessage(ChatColor.GREEN + "The config has been reloaded!");
+			} else {
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.noPermission")));
+			}
+		}
+
 		if(cmd.getName().equalsIgnoreCase("msg")){
 			if(sender instanceof Player){
 				Player p = (Player)sender;
