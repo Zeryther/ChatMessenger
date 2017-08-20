@@ -47,8 +47,8 @@ public class ChatMessengerExecutor implements CommandExecutor {
 									spy.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message)));
 								}
 								
-								if(ChatMessengerPlugin.REPLY.containsKey(p)) ChatMessengerPlugin.REPLY.remove(p);
-								ChatMessengerPlugin.REPLY.put(p, p2);
+								if(ChatMessengerPlugin.REPLY.containsKey(p2)) ChatMessengerPlugin.REPLY.remove(p2);
+								ChatMessengerPlugin.REPLY.put(p2, p);
 							} else {
 								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.blockingMessages").replace("%player%", args[0])));
 							}
