@@ -50,11 +50,11 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								
 								if(p.hasPermission(PermissionNode.CMD_MSG_COLOR)) message = ChatColor.translateAlternateColorCodes('&', message);
 								
-								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message)));
-								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message)));
+								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message).replace("%name%",p2.getName())));
+								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message).replace("%name%",p.getName())));
 
 								for(CommandSender spy : ChatMessengerPlugin.SOCIAL_SPY){
-									spy.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message)));
+									spy.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message).replace("%name1%",p.getName()).replace("%name2%",p2.getName())));
 								}
 								
 								if(ChatMessengerPlugin.REPLY.containsKey(p2)) ChatMessengerPlugin.REPLY.remove(p2);
@@ -99,8 +99,8 @@ public class ChatMessengerExecutor implements CommandExecutor {
 						
 						String message = ChatColor.translateAlternateColorCodes('&', sb.toString().substring(1));
 						
-						console.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message)));
-			            p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", "&dCONSOLE").replace("%message%", message)));
+						console.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message).replace("%name%",p2.getName())));
+			            p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", "&dCONSOLE").replace("%message%", message).replace("%name%","CONSOLE")));
 					} else {
 						console.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.notOnline").replace("%player%", args[0])));
 					}
