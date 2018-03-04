@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import me.zeryther.chatmessenger.user.MessengerUser;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,12 +28,13 @@ public class ChatMessengerPlugin extends JavaPlugin {
 
 	public static final Gson GSON = new Gson();
 
-	private final String path = getDataFolder().getAbsolutePath() + (getDataFolder().getAbsolutePath().endsWith("/") ? "" : "/") + "userData.json";
+	private static final String path = getInstance().getDataFolder().getAbsolutePath() + (getInstance().getDataFolder().getAbsolutePath().endsWith("/") ? "" : "/") + "userData.json";
 	
 	public void onEnable() {
 		instance = this;
 		
 		registerCommands();
+		registerListeners();
 		saveDefaultConfig();
 
 		try {
@@ -49,6 +51,10 @@ public class ChatMessengerPlugin extends JavaPlugin {
 	}
 
 	public void onDisable(){
+		saveData();
+	}
+
+	public static void saveData(){
 		try(Writer writer = new FileWriter(path)){
 			GSON.toJson(USER_STORAGE,writer);
 		} catch(Exception e){
@@ -62,6 +68,10 @@ public class ChatMessengerPlugin extends JavaPlugin {
 	
 	private void registerCommands(){
 		new ChatMessengerExecutor();
+	}
+
+	private void registerListeners(){
+		Bukkit.getPluginManager().registerEvents(new ChatMessengerListener(),this);
 	}
 	
 	public boolean maySendMessage(Player p, Player p2){
