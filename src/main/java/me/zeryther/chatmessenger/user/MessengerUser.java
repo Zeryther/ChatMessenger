@@ -12,7 +12,11 @@ public class MessengerUser {
 
     public static MessengerUser getUser(Player p){
         if(ChatMessengerPlugin.USER_STORAGE.containsKey(p.getUniqueId().toString())){
-            return ChatMessengerPlugin.USER_STORAGE.get(p.getUniqueId().toString());
+            MessengerUser u = ChatMessengerPlugin.USER_STORAGE.get(p.getUniqueId().toString());
+
+            u.getPlayer(p.getUniqueId().toString());
+
+            return u;
         } else {
             MessengerUser u = new MessengerUser(p);
 
