@@ -28,10 +28,12 @@ public class ChatMessengerPlugin extends JavaPlugin {
 
 	public static final Gson GSON = new Gson();
 
-	private static final String path = getInstance().getDataFolder().getAbsolutePath() + (getInstance().getDataFolder().getAbsolutePath().endsWith("/") ? "" : "/") + "userData.json";
+	private static String path;
 	
 	public void onEnable() {
 		instance = this;
+
+		path = getInstance().getDataFolder().getAbsolutePath() + (getInstance().getDataFolder().getAbsolutePath().endsWith("/") ? "" : "/") + "userData.json";
 		
 		registerCommands();
 		registerListeners();
