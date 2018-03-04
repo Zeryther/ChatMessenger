@@ -10,9 +10,4 @@ public class ChatMessengerListener implements Listener {
     public void onQuit(PlayerQuitEvent e){
         ChatMessengerPlugin.saveData();
     }
-
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e){
-
-    }
 }

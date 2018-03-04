@@ -38,7 +38,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 			if(sender instanceof Player){
 				Player p = (Player)sender;
 				
-				if(p.hasPermission(PermissionNode.CMD_MSG)){
+				if(true){//if(p.hasPermission(PermissionNode.CMD_MSG)){
 					if(args.length >= 2){
 						if(Bukkit.getPlayer(args[0]) != null){
 							Player p2 = Bukkit.getPlayer(args[0]);
@@ -60,7 +60,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message).replace("%name%",p2.getName())));
 								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message).replace("%name%",p.getName())));
 
-								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE.values()){
+								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE){
 									if(spy.isSocialSpyActive())
 										if(spy.getPlayer() != p)
 											spy.getPlayer().sendMessage(

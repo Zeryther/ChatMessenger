@@ -7,37 +7,27 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class MessengerUser {
-    private transient Player p;
+    private String uuid;
     private boolean socialSpyActive;
 
     public static MessengerUser getUser(Player p){
-        if(ChatMessengerPlugin.USER_STORAGE.containsKey(p.getUniqueId().toString())){
-            MessengerUser u = ChatMessengerPlugin.USER_STORAGE.get(p.getUniqueId().toString());
-
-            u.getPlayer(p.getUniqueId().toString());
-
-            return u;
-        } else {
-            MessengerUser u = new MessengerUser(p);
-
-            ChatMessengerPlugin.USER_STORAGE.put(p.getUniqueId().toString(),u);
-
-            return u;
+        for(MessengerUser u : ChatMessengerPlugin.USER_STORAGE){
+            if(u.uuid.equals(p.getUniqueId().toString())) return u;
         }
+
+        MessengerUser u = new MessengerUser(p);
+
+        ChatMessengerPlugin.USER_STORAGE.add(u);
+
+        return u;
     }
 
     public MessengerUser(Player p){
-        this.p = p;
+        this.uuid = p.getUniqueId().toString();
     }
 
     public Player getPlayer(){
-        return p;
-    }
-
-    public Player getPlayer(String uuid){
-        if(p == null) p = Bukkit.getPlayer(UUID.fromString(uuid));
-
-        return p;
+        return Bukkit.getPlayer(UUID.fromString(uuid));
     }
 
     public boolean isSocialSpyActive() {

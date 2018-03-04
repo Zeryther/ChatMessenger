@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.zeryther.chatmessenger.util.PermissionNode;
 
 public class ChatMessengerPlugin extends JavaPlugin {
-	public static HashMap<String,MessengerUser> USER_STORAGE;
+	public static ArrayList<MessengerUser> USER_STORAGE;
 
 	private static ChatMessengerPlugin instance;
 	public static ArrayList<Player> BLOCK_MSG = new ArrayList<Player>();
@@ -62,14 +62,8 @@ public class ChatMessengerPlugin extends JavaPlugin {
 			File file = new File(path);
 			if(file.exists()){
 				USER_STORAGE = GSON.fromJson(new JsonReader(new FileReader(path)),new TypeToken<HashMap<String,MessengerUser>>(){}.getType());
-
-				for(String uuid : USER_STORAGE.keySet()){
-					MessengerUser u = USER_STORAGE.get(uuid);
-
-					u.getPlayer(uuid);
-				}
 			} else {
-				USER_STORAGE = new HashMap<String,MessengerUser>();
+				USER_STORAGE = new ArrayList<MessengerUser>();
 				file.createNewFile();
 			}
 		} catch(Exception e){
