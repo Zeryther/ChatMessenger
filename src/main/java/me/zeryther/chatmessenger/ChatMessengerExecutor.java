@@ -1,5 +1,6 @@
 package me.zeryther.chatmessenger;
 
+import me.zeryther.chatmessenger.util.Util;
 import net.md_5.bungee.api.ChatColor;
 
 import org.bukkit.Bukkit;
@@ -47,6 +48,11 @@ public class ChatMessengerExecutor implements CommandExecutor {
 									sb.append(" ").append(args[i]);
 								}
 								String message = sb.toString().substring(1);
+
+								if(Util.containsLink(message) && !p.hasPermission(PermissionNode.CMD_MSG_SEND_LINKS)){
+									p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.mayNotSendLinks")));
+									return true;
+								}
 								
 								if(p.hasPermission(PermissionNode.CMD_MSG_COLOR)) message = ChatColor.translateAlternateColorCodes('&', message);
 								

@@ -1,5 +1,6 @@
 cmd.msg.format.meTo: "&6[&9I&6->&c%displayname%&6] &f%message%"
 cmd.msg.format.toMe: "&6[&9%displayname%&6->&cme&6] &f%message%"
+cmd.msg.mayNotSendLinks: "&cYou are not allowed to send links via private message."
 cmd.msg.usage: "&c/%label% <User> <Message>"
 
 cmd.reply.usage: "&c/%label% <Message>"
