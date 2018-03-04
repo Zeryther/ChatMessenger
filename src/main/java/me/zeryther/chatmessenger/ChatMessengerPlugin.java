@@ -39,6 +39,25 @@ public class ChatMessengerPlugin extends JavaPlugin {
 		registerListeners();
 		saveDefaultConfig();
 
+		getConfig().addDefault("cmd.msg.format.meTo","&6[&9I&6->&c%displayname%&6] &f%message%");
+		getConfig().addDefault("cmd.msg.format.toMe","&6[&9%displayname%&6->&cme&6] &f%message%");
+		getConfig().addDefault("cmd.msg.mayNotSendLinks","&cYou are not allowed to send links via private message.");
+		getConfig().addDefault("cmd.msg.usage","&c/%label% <User> <Message>");
+
+		getConfig().addDefault("cmd.reply.usage","&c/%label% <Message>");
+		getConfig().addDefault("cmd.reply.noMessageSent","&cYou have to send a message before you can use /reply");
+
+		getConfig().addDefault("cmd.blockmsg.activated","&cYou can no longer receive private messages!");
+		getConfig().addDefault("cmd.blockmsg.deactivated","&aYou can now receive private messages again!");
+
+		getConfig().addDefault("cmd.socialspy.on","&aSocial-Spy is now active!");
+		getConfig().addDefault("cmd.socialspy.off","&cSocial-Spy is no longer active!");
+		getConfig().addDefault("cmd.socialspy.msg","&6[&c%player1%&6->%c%player2%&6] &f%message%");
+
+		getConfig().addDefault("player.notOnline","&cPlayer '%player%' is offline!");
+		getConfig().addDefault("player.noPermission","&cYou do not have permission!");
+		getConfig().addDefault("player.blockingMessages","&c%displayname% is blocking private messages!");
+
 		try {
 			File file = new File(path);
 			if(file.exists()){

@@ -61,7 +61,28 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message).replace("%name%",p.getName())));
 
 								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE.values()){
-									if(spy.isSocialSpyActive()) if(spy.getPlayer() != p) spy.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message).replace("%name1%",p.getName()).replace("%name2%",p2.getName())));
+									if(spy.isSocialSpyActive())
+										if(spy.getPlayer() != p)
+											spy.getPlayer().sendMessage(
+													ChatColor.translateAlternateColorCodes('&',
+													ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg")
+															.replace("%player1%", p.getDisplayName())
+															.replace("%player2%", p2.getDisplayName())
+															.replace("%message%", message)
+															.replace("%name1%",p.getName())
+															.replace("%name2%",p2.getName())));
+								}
+
+								for(CommandSender spy : ChatMessengerPlugin.SOCIAL_SPY){
+									if(spy != p)
+										spy.sendMessage(
+												ChatColor.translateAlternateColorCodes('&',
+														ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg")
+																.replace("%player1%", p.getDisplayName())
+																.replace("%player2%", p2.getDisplayName())
+																.replace("%message%", message)
+																.replace("%name1%",p.getName())
+																.replace("%name2%",p2.getName())));
 								}
 								
 								if(ChatMessengerPlugin.REPLY.containsKey(p2)) ChatMessengerPlugin.REPLY.remove(p2);
