@@ -1,7 +1,10 @@
 package me.zeryther.chatmessenger.user;
 
 import me.zeryther.chatmessenger.ChatMessengerPlugin;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class MessengerUser {
     private transient Player p;
@@ -21,10 +24,15 @@ public class MessengerUser {
 
     public MessengerUser(Player p){
         this.p = p;
-        System.out.println("NEW");
     }
 
     public Player getPlayer(){
+        return p;
+    }
+
+    public Player getPlayer(String uuid){
+        if(p == null) p = Bukkit.getPlayer(UUID.fromString(uuid));
+
         return p;
     }
 

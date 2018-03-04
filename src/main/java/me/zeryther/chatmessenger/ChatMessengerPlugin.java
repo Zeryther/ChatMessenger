@@ -62,6 +62,12 @@ public class ChatMessengerPlugin extends JavaPlugin {
 			File file = new File(path);
 			if(file.exists()){
 				USER_STORAGE = GSON.fromJson(new JsonReader(new FileReader(path)),new TypeToken<HashMap<String,MessengerUser>>(){}.getType());
+
+				for(String uuid : USER_STORAGE.keySet()){
+					MessengerUser u = USER_STORAGE.get(uuid);
+
+					u.getPlayer(uuid);
+				}
 			} else {
 				USER_STORAGE = new HashMap<String,MessengerUser>();
 				file.createNewFile();
