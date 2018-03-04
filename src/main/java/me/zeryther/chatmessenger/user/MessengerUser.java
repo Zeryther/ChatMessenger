@@ -5,14 +5,23 @@ import org.bukkit.entity.Player;
 
 public class MessengerUser {
     private transient Player p;
-    private boolean socialSpyActive = false;
+    private boolean socialSpyActive;
 
     public static MessengerUser getUser(Player p){
-        return ChatMessengerPlugin.USER_STORAGE.getOrDefault(p.getUniqueId().toString(),ChatMessengerPlugin.USER_STORAGE.put(p.getUniqueId().toString(),new MessengerUser(p)));
+        if(ChatMessengerPlugin.USER_STORAGE.containsKey(p.getUniqueId().toString())){
+            return ChatMessengerPlugin.USER_STORAGE.get(p.getUniqueId().toString());
+        } else {
+            MessengerUser u = new MessengerUser(p);
+
+            ChatMessengerPlugin.USER_STORAGE.put(p.getUniqueId().toString(),u);
+
+            return u;
+        }
     }
 
     public MessengerUser(Player p){
         this.p = p;
+        System.out.println("NEW");
     }
 
     public Player getPlayer(){
