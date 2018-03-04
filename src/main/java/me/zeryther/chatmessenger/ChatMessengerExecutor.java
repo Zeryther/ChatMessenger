@@ -1,5 +1,6 @@
 package me.zeryther.chatmessenger;
 
+import me.zeryther.chatmessenger.user.MessengerUser;
 import me.zeryther.chatmessenger.util.Util;
 import net.md_5.bungee.api.ChatColor;
 
@@ -59,8 +60,8 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								p.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.meTo").replace("%displayname%", p2.getDisplayName()).replace("%message%", message).replace("%name%",p2.getName())));
 								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message).replace("%name%",p.getName())));
 
-								for(CommandSender spy : ChatMessengerPlugin.SOCIAL_SPY){
-									if(spy != p) spy.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message).replace("%name1%",p.getName()).replace("%name2%",p2.getName())));
+								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE.values()){
+									if(spy.isSocialSpyActive()) if(spy.getPlayer() != p) spy.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg").replace("%player1%", p.getDisplayName()).replace("%player2%", p2.getDisplayName()).replace("%message%", message).replace("%name1%",p.getName()).replace("%name2%",p2.getName())));
 								}
 								
 								if(ChatMessengerPlugin.REPLY.containsKey(p2)) ChatMessengerPlugin.REPLY.remove(p2);
@@ -120,16 +121,32 @@ public class ChatMessengerExecutor implements CommandExecutor {
 
 		if(cmd.getName().equalsIgnoreCase("socialspy")){
 			if(sender.hasPermission(PermissionNode.CMD_SOCIALSPY)){
-				if(ChatMessengerPlugin.SOCIAL_SPY.contains(sender)){
-					// Social Spy is on
+				if(sender instanceof Player){
+					MessengerUser u = MessengerUser.getUser((Player)sender);
 
-					ChatMessengerPlugin.SOCIAL_SPY.remove(sender);
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.off")));
+					if(u.isSocialSpyActive()){
+						// Social Spy is on
+
+						u.setSocialSpyActive(false);
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.off")));
+					} else {
+						// Social Spy is off
+
+						u.setSocialSpyActive(true);
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.on")));
+					}
 				} else {
-					// Social Spy is off
+					if(ChatMessengerPlugin.SOCIAL_SPY.contains(sender)){
+						// Social Spy is on
 
-					ChatMessengerPlugin.SOCIAL_SPY.add(sender);
-					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.on")));
+						ChatMessengerPlugin.SOCIAL_SPY.remove(sender);
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.off")));
+					} else {
+						// Social Spy is off
+
+						ChatMessengerPlugin.SOCIAL_SPY.add(sender);
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.on")));
+					}
 				}
 			} else {
 				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("player.noPermission")));
