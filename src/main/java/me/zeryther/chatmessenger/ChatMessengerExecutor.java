@@ -62,7 +62,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 
 								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE){
 									if(spy.isSocialSpyActive())
-										if(spy.getPlayer() != p)
+										if(spy.getPlayer() != p && spy.getPlayer() != p2)
 											spy.getPlayer().sendMessage(
 													ChatColor.translateAlternateColorCodes('&',
 													ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg")
@@ -74,7 +74,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								}
 
 								for(CommandSender spy : ChatMessengerPlugin.SOCIAL_SPY){
-									if(spy != p)
+									if(spy != p && spy != p2)
 										spy.sendMessage(
 												ChatColor.translateAlternateColorCodes('&',
 														ChatMessengerPlugin.getInstance().getConfig().getString("cmd.socialspy.msg")
