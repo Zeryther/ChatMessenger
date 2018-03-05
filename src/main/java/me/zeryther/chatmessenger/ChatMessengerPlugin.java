@@ -63,12 +63,13 @@ public class ChatMessengerPlugin extends JavaPlugin {
 			if(file.exists()){
 				USER_STORAGE = GSON.fromJson(new JsonReader(new FileReader(path)),new TypeToken<HashMap<String,MessengerUser>>(){}.getType());
 			} else {
-				USER_STORAGE = new ArrayList<MessengerUser>();
 				file.createNewFile();
 			}
 		} catch(Exception e){
 			e.printStackTrace();
 		}
+
+		if(USER_STORAGE == null) USER_STORAGE = new ArrayList<MessengerUser>();
 	}
 
 	public void onDisable(){
