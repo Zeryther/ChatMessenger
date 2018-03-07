@@ -66,7 +66,7 @@ public class ChatMessengerPlugin extends JavaPlugin {
 				file.createNewFile();
 			}
 		} catch(Exception e){
-			e.printStackTrace();
+			System.out.println("An error occurred trying to read userData.json, defaulting to empty storage.");
 		}
 
 		if(USER_STORAGE == null) USER_STORAGE = new ArrayList<MessengerUser>();

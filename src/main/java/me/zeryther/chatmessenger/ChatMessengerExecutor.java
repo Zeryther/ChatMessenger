@@ -61,7 +61,7 @@ public class ChatMessengerExecutor implements CommandExecutor {
 								p2.sendMessage(ChatColor.translateAlternateColorCodes('&', ChatMessengerPlugin.getInstance().getConfig().getString("cmd.msg.format.toMe").replace("%displayname%", p.getDisplayName()).replace("%message%", message).replace("%name%",p.getName())));
 
 								for(MessengerUser spy : ChatMessengerPlugin.USER_STORAGE){
-									if(spy.isSocialSpyActive())
+									if(spy.getPlayer() != null && spy.getPlayer().isOnline() && spy.isSocialSpyActive())
 										if(spy.getPlayer() != p && spy.getPlayer() != p2)
 											spy.getPlayer().sendMessage(
 													ChatColor.translateAlternateColorCodes('&',

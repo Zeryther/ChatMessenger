@@ -1,6 +1,6 @@
 name: ChatMessenger
 author: Zeryther
-version: 1.2.3
+version: 1.2.4
 website: https://github.com/Zeryther/ChatMessenger
 main: me.zeryther.chatmessenger.ChatMessengerPlugin
 
